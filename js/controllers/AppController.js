@@ -63,7 +63,7 @@ function($scope, $timeout, $http, DataService, Utils, $location) {
 
     $scope.pollgetCarData = function(){
         $scope.getCarData();
-        pollSystemSummaryInfo = $timeout($scope.pollgetCarData, 3000);
+        pollSystemSummaryInfo = $timeout($scope.pollgetCarData, 1000);
         if($scope.CarData){
         var longi = $scope.CarData['Properties'][8].Snapshot.Value;
         var lat = $scope.CarData['Properties'][18].Snapshot.Value;
