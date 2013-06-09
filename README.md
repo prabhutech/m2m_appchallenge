@@ -1,7 +1,7 @@
-myCAR - Real-time Dashboard &amp; Diagnostic Analytics Tool - m2m_appchallenge 2013
+m2m_appchallenge 2013
 ================
 
-
+myCAR - Real-time Dashboard &amp; Diagnostic Analytics Tool
 
 Features:
 
