@@ -1,0 +1,146 @@
+<div  ng-controller="AppController">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="tempStats">
+                <div class="tempStatBox span2" ontablet="span4" ondesktop="span2">
+                    <div class="tempStat" style="border-color: rgb(203, 233, 104);">
+                        {{CarData['Properties'][0].Snapshot.Value}}
+                    </div>
+                    <span>Torque At Tranmission</span>
+                </div>
+
+                <div class="tempStatBox span2" ontablet="span4" ondesktop="span2">
+                    <div class="tempStat" style="border-color: rgb(103, 194, 239);">
+                        {{CarData['Properties'][2].Snapshot.Value}}
+                    </div>
+                    <span>Vehicle Speed</span>
+                </div>
+
+                <div class="tempStatBox span2" ontablet="span4" ondesktop="span2">
+                    <div class="tempStat" style="border-color: rgb(103, 194, 239);">
+                        {{CarData['Properties'][7].Snapshot.Value}}
+                    </div>
+                    <span>Engine Speed</span>
+                </div>
+
+                <div class="tempStatBox span2 noMargin" ontablet="span4" ondesktop="span2">
+                    <div class="tempStat" style="border-color: rgb(250, 187, 61);">
+                        {{roundNumber(CarData['Properties'][11].Snapshot.Value)}}
+                    </div>
+                    <span>FineOdoMeter</span>
+                </div>
+
+                <div class="tempStatBox span2" ontablet="span4" ondesktop="span2">
+                    <div class="tempStat" style="border-color: rgb(255, 84, 84);">
+                        {{roundNumber(CarData['Properties'][15].Snapshot.Value)}}°
+                    </div>
+                    <span>Steering Wheel Angle</span>
+                </div>
+
+                <div class="tempStatBox span2" ontablet="span4" ondesktop="span2">
+                    <div class="tempStat" style="border-color: rgb(250, 96, 61);">
+                        {{roundNumber(CarData['Properties'][14].Snapshot.Value)}}
+                    </div>
+                    <span>Fuel Consumed</span>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span4">
+            
+            Fuel Level: {{CarData['Properties'][13].Snapshot.Value}} %
+            <div class="progress">
+                <div class="bar" data-percentage="{{CarData['Properties'][13].Snapshot.Value}}" style="width: {{CarData['Properties'][13].Snapshot.Value;}}%;"></div>
+            </div>
+
+        </div>
+        <div class="span4">
+            Speed: {{CarData['Properties'][2].Snapshot.Value}}Kph, Accelerator Pedal Position: {{CarData['Properties'][12].Snapshot.Value}}%
+            <div class="progress">
+                <div class="bar" data-percentage="{{CarData['Properties'][2].Snapshot.Value}}" style="width: {{CarData['Properties'][2].Snapshot.Value;}}%;"></div>
+            </div>
+        </div>
+        <div class="span4">
+            Torque: {{CarData['Properties'][0].Snapshot.Value}}
+            <div class="progress">
+                <div class="bar" data-percentage="{{CarData['Properties'][0].Snapshot.Value}}" style="width: {{CarData['Properties'][0].Snapshot.Value;}}%;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6">
+            <table class="table table-bordered table-striped">
+                <colgroup>
+                    <col class="span1">
+                    <col class="span7">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td> Model: </td>
+                        <td>{{CarData['Properties'][22].Snapshot.Value}}</td>
+                    </tr>
+                    <tr>
+                        <td> Make: </td>
+                        <td>{{CarData['Properties'][21].Snapshot.Value}}</td>
+                    </tr>
+                    <tr>
+                        <td> Year: </td>
+                        <td>{{CarData['Properties'][23].Snapshot.Value}}</td>
+                    </tr>
+                    <tr>
+                        <td> VIN: </td>
+                        <td>{{CarData['Properties'][20].Snapshot.Value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="span6">
+
+            <table class="table table-bordered table-striped">
+                <colgroup>
+                    <col class="span1">
+                    <col class="span7">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td> Parking Brake:</td>
+                        <td><span ng-show="{{CarData['Properties'][5].Snapshot.Value}}" class="badge badge-success">ON</span><span ng-hide="{{CarData['Properties'][5].Snapshot.Value}}" class="badge badge-important">OFF</span></td>
+                    </tr>
+                    <tr>
+                        <td> Head Lights: </td>
+                        <td><span ng-show="{{CarData['Properties'][4].Snapshot.Value}}" class="badge badge-success">ON</span><span ng-hide="{{CarData['Properties'][4].Snapshot.Value}}" class="badge badge-important">OFF</span></td>
+                    </tr>
+                    <tr>
+                        <td> Brake Pedal Status: </td>
+                        <td><span ng-show="{{CarData['Properties'][3].Snapshot.Value}}" class="badge badge-success">ON</span><span ng-hide="{{CarData['Properties'][3].Snapshot.Value}}" class="badge badge-important">OFF</span></td>
+                    </tr>
+                    <tr>
+                        <td> High Beam Status:</td>
+                        <td><span ng-show="{{CarData['Properties'][10].Snapshot.Value}}" class="badge badge-success">ON</span><span ng-hide="{{CarData['Properties'][10].Snapshot.Value}}" class="badge badge-important">OFF</span></td>
+                    </tr>
+                    <tr>
+                        <td> Windshield Wiper Status:</td>
+                        <td><span ng-show="{{CarData['Properties'][19].Snapshot.Value}}" class="badge badge-success">ON</span><span ng-hide="{{CarData['Properties'][19].Snapshot.Value}}" class="badge badge-important">OFF</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div data-dojo-type="dijit.layout.BorderContainer"
+            data-dojo-props="design:'headline', gutters:false"
+            style="width: 100%; height: 100%; margin:0;">
+                <div id="map"
+                data-dojo-type="dijit.layout.ContentPane"
+                data-dojo-props="region:'center'"
+                style="padding:0"></div>
+            </div>
+        </div>
+    </div>
+</div>
