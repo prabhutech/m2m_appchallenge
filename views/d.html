@@ -11,7 +11,7 @@
 
                 <div class="tempStatBox span2" ontablet="span4" ondesktop="span2">
                     <div class="tempStat" style="border-color: rgb(103, 194, 239);">
-                        {{CarData['Properties'][2].Snapshot.Value}}
+                        {{roundNumber(CarData['Properties'][2].Snapshot.Value)}}
                     </div>
                     <span>Vehicle Speed</span>
                 </div>
@@ -93,6 +93,14 @@
                     <tr>
                         <td> VIN: </td>
                         <td>{{CarData['Properties'][20].Snapshot.Value}}</td>
+                    </tr>
+                    <tr>
+                        <td> Ignition Status: </td>
+                        <td>
+                            <span class="badge badge-success">
+                                {{CarData['Properties'][17].Snapshot.Value}}
+                                </span>
+                            </td>
                     </tr>
                 </tbody>
             </table>
