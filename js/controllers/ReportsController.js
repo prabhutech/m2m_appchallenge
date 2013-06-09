@@ -2,7 +2,6 @@ App.controller('ReportsController', ['$scope', '$timeout', '$http', 'DataService
 function($scope, $timeout, $http, DataService, Utils, $location) {
 
     /*init*/
-   $scope.FuelConsumed = {};
 
     $scope.getFuelConsumed = function (callbackFunc) {       
         $scope.searchTerm = $scope.twitterUser;        
@@ -15,8 +14,20 @@ function($scope, $timeout, $http, DataService, Utils, $location) {
           }
         })
         .success(function(data){
-            $scope.FuelConsumed.data = data;
+            $scope.FuelConsumed = data;
             console.dir($scope.FuelConsumed);
+            
+            if($scope.FuelConsumed){
+                var FuelConsumedChartData = [];
+                for(var i=0; i < $scope.FuelConsumed.length; i++){
+                    var arr = [];
+                    arr.push(i);
+                    arr.push(Math.round($scope.FuelConsumed[i].Value));
+                    FuelConsumedChartData.push(arr);
+                }
+            var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+            $.plot("#fuelConsumptionChartContainer", [FuelConsumedChartData]);
+            }
             if(callbackFunc){
                 console.log("Passing twitter results to callback: " + callbackFunc.name);
                 return callbackFunc(data);
@@ -81,7 +92,7 @@ function($scope, $timeout, $http, DataService, Utils, $location) {
         return Math.round(number);
     }
 
-    //$scope.getFuelConsumed();
+    $scope.getFuelConsumed();
     $scope.pollgetVehileSpeed();
     
 
